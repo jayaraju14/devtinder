@@ -3,18 +3,18 @@ const connectDB=require('./config/database')
 const User=require('./models/user')
 const app=express();
 
+app.use(express.json())
+
 app.post('/signup',async (req,res)=>{
-    const user=new User(
-    {
-            firstName:"karuna",
-        lastName:"k",
-        emailId:"karuna@gmail.com",
-        password:"karuna",
-        age:26,
-        gender:"M"
-    });
-    const userData=await user.save();
-    res.send(userData)
+    // console.log(req.body)
+    const user=new User(req.body);
+    try{
+       const userData=await user.save();
+    res.send(userData) 
+    }catch(err){
+        console.log(err)
+    }
+    
 })
 
 
