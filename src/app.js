@@ -3,6 +3,7 @@ const connectDB=require('./config/database')
 const User=require('./models/user')
 const app=express();
 
+//json middlewares
 app.use(express.json())
 
 app.post('/signup',async (req,res)=>{
